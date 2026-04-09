@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  height: 100vh;
+  overflow: hidden;
+}
+
+nav, .container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+/* LEFT gray panel */
+.left {
+  width: 48%;
+  background: #e0e0e0;
+  padding: 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  clip-path: polygon(0 0, 90% 0, 100% 100%, 0 100%);
+  z-index: 1;
+  position: relative;
+}
+
+.greeting {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #333;
+  margin-bottom: 0.2rem;
+}
+
+.left h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #111;
+  line-height: 1.1;
+  margin-bottom: 0.4rem;
+}
+
+.role {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 2.5rem;
+}
+
+/* Social icon circles */
+.social-links {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.social-links a {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #c8c8c8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #111;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+
+.social-links a:hover {
+  background: #aaa;
+}
+
+/* RIGHT dark panel */
+.right {
+  flex: 1;
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem 3rem;
+  margin-left: -60px; 
+  z-index: 0;  
+}
+
+.hero-photo {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex: 1;
+}
+
+.hero-photo img {
+  max-height: 85vh;
+  object-fit: contain;
+  object-position: bottom;
+}
+
+/* Nav links horizontal at the top right */
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  gap: 2.5rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #eee;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 400;    /* ← lighter, matching the reference */
+  letter-spacing: 0.02em;
+}
+
+.nav-links a:hover {
+  color: #fff;
+}
