@@ -1,13 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About me</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — Joel Dsilva</title>
+  <link rel="stylesheet" href="/styles/style.css">
+  <link rel="stylesheet" href="/styles/effects.css">
+  <style>
+    body { overflow-y: auto; }
+
+    .page-layout {
+      min-height: 100vh;
+      display: flex;
+    }
+
+    /* reuse left sidebar */
+    .sidebar {
+      width: 260px;
+      min-width: 220px;
+      background: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.5rem 2rem;
+      clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
+      z-index: 1;
+      position: relative;
+    }
+
+    .sidebar-name {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #111;
+      line-height: 1.1;
+      margin-bottom: 0.3rem;
+    }
+
+    .sidebar-role {
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .sidebar-nav a {
+      color: #444;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .sidebar-nav a:hover,
+    .sidebar-nav a.active {
+      color: #111;
+      font-weight: 700;
+    }
+
+    /* main content */
+    .main {
+      flex: 1;
+      background: #111;
+      padding: 3.5rem 4rem;
+      margin-left: -40px;
+      overflow-y: auto;
+    }
+
+    .page-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 0.6rem;
+    }
+
+    .page-title {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 2.5rem;
+    }
+
+    .about-bio {
+      max-width: 560px;
+      color: #bbb;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+    }
+
+    .about-bio strong {
+      color: #fff;
+    }
+
+    /* stat cards row */
+    .stats {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+
+    .stat-card {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 10px;
+      padding: 1.2rem 1.6rem;
+      min-width: 130px;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: #666;
+      margin-top: 0.3rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* currently learning */
+    .section-heading {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .tag {
+      background: #1e1e1e;
+      border: 1px solid #333;
+      color: #ccc;
+      font-size: 0.82rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+    }
+  </style>
 </head>
 <body>
-     <h1>I'm Joel, a 22 year old engineering graduate from Mumbai. 
-        I enjoy building things from scratch and understanding how they work. 
-        Currently focused on full stack development.</h1>
+  <div class="page-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div>
+        <p class="sidebar-name">Joel<br>Dsilva</p>
+        <p class="sidebar-role">Front-end Dev / UI Designer</p>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="/templates/index.html">Home</a>
+        <a href="/templates/about.html" class="active">About me</a>
+        <a href="/templates/skills.html">Skills</a>
+        <a href="/templates/contact.html">Contact</a>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+
+      <p class="page-label fade-in">Who I am</p>
+      <h1 class="page-title fade-in delay-1">About me.</h1>
+
+      <p class="about-bio fade-in delay-2">
+        I'm <strong>Joel</strong>, a developer who enjoys building things from scratch
+        and understanding how they work at every layer. I find the most satisfaction
+        when an idea goes from zero to something real and usable.<br><br>
+        Currently focused on <strong>full-stack development</strong> — connecting
+        frontend interfaces to backends, databases, and APIs. I learn by doing,
+        which means a lot of projects, a lot of breaking things, and figuring out why.
+      </p>
+
+      <div class="stats fade-in delay-3">
+        <div class="stat-card">
+          <div class="stat-number">5+</div>
+          <div class="stat-label">Projects built</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Languages used</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Portfolio shipped</div>
+        </div>
+      </div>
+
+      <p class="section-heading fade-in delay-4">Currently learning</p>
+      <div class="tags fade-in delay-4">
+        <span class="tag">Node.js</span>
+        <span class="tag">Express.js</span>
+        <span class="tag">React.js</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">Full-stack architecture</span>
+      </div>
+
+    </main>
+  </div>
+
+  <script src="/scripts/main.js"></script>
 </body>
 </html>

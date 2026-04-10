@@ -1,18 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skills</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills — Joel Dsilva</title>
+  <link rel="stylesheet" href="/styles/style.css">
+  <link rel="stylesheet" href="/styles/effects.css">
+  <style>
+    body { overflow-y: auto; }
+
+    .page-layout {
+      min-height: 100vh;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 260px;
+      min-width: 220px;
+      background: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.5rem 2rem;
+      clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
+      z-index: 1;
+      position: relative;
+    }
+
+    .sidebar-name {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #111;
+      line-height: 1.1;
+      margin-bottom: 0.3rem;
+    }
+
+    .sidebar-role {
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .sidebar-nav a {
+      color: #444;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .sidebar-nav a:hover,
+    .sidebar-nav a.active {
+      color: #111;
+      font-weight: 700;
+    }
+
+    .main {
+      flex: 1;
+      background: #111;
+      padding: 3.5rem 4rem;
+      margin-left: -40px;
+      overflow-y: auto;
+    }
+
+    .page-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 0.6rem;
+    }
+
+    .page-title {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 0.6rem;
+    }
+
+    .page-subtitle {
+      color: #555;
+      font-size: 0.9rem;
+      margin-bottom: 2.8rem;
+      font-style: italic;
+    }
+
+    /* skill category */
+    .skill-group {
+      margin-bottom: 2.5rem;
+    }
+
+    .skill-group-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    /* each skill row: name + bar */
+    .skill-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .skill-name {
+      color: #ccc;
+      font-size: 0.88rem;
+      width: 160px;
+      flex-shrink: 0;
+    }
+
+    .skill-bar-track {
+      flex: 1;
+      height: 4px;
+      background: #222;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      background: #e0e0e0;
+      border-radius: 4px;
+      width: 0;
+      transition: width 1s ease;
+    }
+
+    /* grow bars when .visible is added by JS */
+    .skill-item.visible .skill-bar-fill {
+      width: var(--fill);
+    }
+
+    .skill-percent {
+      color: #444;
+      font-size: 0.78rem;
+      width: 32px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    /* upcoming skills banner */
+    .coming-soon {
+      margin-top: 1rem;
+      background: #181818;
+      border: 1px solid #2a2a2a;
+      border-radius: 10px;
+      padding: 1.4rem 1.8rem;
+      color: #555;
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+    .coming-soon strong {
+      color: #888;
+    }
+  </style>
 </head>
 <body>
-    <h1>Currenly nothing to be proud off but lets see after all the projects done</h1>
-    <ul>
-        <li>Python</li>
-        <li>CLI applications</li>
-        <li>CRUD operations</li>
-        <li>JSON file handling</li>
-        <li>Basic HTML</li>
-    </ul>
+  <div class="page-layout">
+
+    <aside class="sidebar">
+      <div>
+        <p class="sidebar-name">Joel<br>Dsilva</p>
+        <p class="sidebar-role">Front-end Dev / UI Designer</p>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="/index.html">Home</a>
+        <a href="/templates/index.html">Home</a>
+        <a href="/templates/about.html">About me</a>
+        <a href="/templates/skills.html" class="active">Skills</a>
+        <a href="/templates/contact.html">Contact</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+
+      <p class="page-label fade-in">What I know</p>
+      <h1 class="page-title fade-in delay-1">Skills.</h1>
+      <p class="page-subtitle fade-in delay-2">Work in progress — but growing every day.</p>
+
+      <!-- Group 1 -->
+      <div class="skill-group fade-in delay-2">
+        <p class="skill-group-label">Programming</p>
+        <div class="skill-list">
+          <div class="skill-item fade-in" style="--fill: 70%">
+            <span class="skill-name">Python</span>
+            <div class="skill-bar-track"><div class="skill-bar-fill"></div></div>
+            <span class="skill-percent">70%</span>
+          </div>
+          <div class="skill-item fade-in delay-1" style="--fill: 45%">
+            <span class="skill-name">JavaScript</span>
+            <div class="skill-bar-track"><div class="skill-bar-fill"></div></div>
+            <span class="skill-percent">45%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 2 -->
+      <div class="skill-group fade-in delay-3">
+        <p class="skill-group-label">Web</p>
+        <div class="skill-list">
+          <div class="skill-item fade-in" style="--fill: 55%">
+            <span class="skill-name">HTML</span>
+            <div class="skill-bar-track"><div class="skill-bar-fill"></div></div>
+            <span class="skill-percent">55%</span>
+          </div>
+          <div class="skill-item fade-in delay-1" style="--fill: 40%">
+            <span class="skill-name">CSS</span>
+            <div class="skill-bar-track"><div class="skill-bar-fill"></div></div>
+            <span class="skill-percent">40%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 3 -->
+      <div class="skill-group fade-in delay-4">
+        <p class="skill-group-label">Tools & concepts</p>
+        <div class="skill-list">
+          <div class="skill-item fade-in" style="--fill: 65%">
+            <span class="skill-name">CLI applications</span>
+            <div class="skill-bar-track"><div class="skill-bar-fill"></div></div>
+            <span class="skill-percent">65%</span>
+          </div>
+          <div class="skill-item fade-in delay-1" style="--fill: 60%">
+            <span class="skill-name">CRUD operations</span>
+            <div class="skill-bar-track"><div class="skill-bar-fill"></div></div>
+            <span class="skill-percent">60%</span>
+          </div>
+          <div class="skill-item fade-in delay-2" style="--fill: 60%">
+            <span class="skill-name">JSON file handling</span>
+            <div class="skill-bar-track"><div class="skill-bar-fill"></div></div>
+            <span class="skill-percent">60%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="coming-soon fade-in delay-4">
+        <strong>Coming soon to this list:</strong> Node.js · Express.js · React · PostgreSQL · REST APIs<br>
+        Check back after the full-stack projects are done.
+      </div>
+
+    </main>
+  </div>
+
+  <script src="/scripts/main.js"></script>
+  <script>
+    // Skill bars need a special observer that also triggers the CSS --fill animation
+    const skillItems = document.querySelectorAll('.skill-item');
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          barObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    skillItems.forEach(item => barObserver.observe(item));
+  </script>
 </body>
 </html>
