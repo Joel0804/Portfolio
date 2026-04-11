@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skills — Joel Dsilva</title>
-  <link rel="stylesheet" href="/styles/style.css">
-  <link rel="stylesheet" href="/styles/effects.css">
+  <link rel="stylesheet" href="/static/style.css">
   <style>
     body { overflow-y: auto; }
 
@@ -179,11 +178,11 @@
         <p class="sidebar-role">Front-end Dev / UI Designer</p>
       </div>
       <nav class="sidebar-nav">
-        <a href="/index.html">Home</a>
-        <a href="/templates/index.html">Home</a>
-        <a href="/templates/about.html">About me</a>
-        <a href="/templates/skills.html" class="active">Skills</a>
-        <a href="/templates/contact.html">Contact</a>
+        <a href="/">Home</a>
+        <a href="/about">About me</a>
+        <a href="/skills" class="active">Skills</a>
+        <a href="/contact">Contact</a>
+        <a href="/projects">Project</a>
       </nav>
     </aside>
 
@@ -257,7 +256,7 @@
     </main>
   </div>
 
-  <script src="/scripts/main.js"></script>
+  <script src="/static/main.js"></script>
   <script>
     // Skill bars need a special observer that also triggers the CSS --fill animation
     const skillItems = document.querySelectorAll('.skill-item');
