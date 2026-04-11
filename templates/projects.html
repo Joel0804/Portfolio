@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Joel Dsilva</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    body { overflow-y: auto; }
+
+    .page-layout {
+      min-height: 100vh;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 260px;
+      min-width: 220px;
+      background: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2.5rem 2rem;
+      clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
+      z-index: 1;
+      position: relative;
+    }
+
+    .sidebar-name { font-size: 1.5rem; font-weight: 900; color: #111; line-height: 1.1; margin-bottom: 0.3rem; }
+    .sidebar-role { font-size: 0.8rem; color: #666; margin-bottom: 2rem; }
+    .sidebar-nav  { display: flex; flex-direction: column; gap: 1rem; }
+    .sidebar-nav a { color: #444; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .sidebar-nav a:hover, .sidebar-nav a.active { color: #111; font-weight: 700; }
+
+    .main {
+      flex: 1;
+      background: #111;
+      padding: 3.5rem 4rem;
+      margin-left: -40px;
+      overflow-y: auto;
+    }
+
+    .page-label { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: #555; margin-bottom: 0.6rem; }
+    .page-title { font-size: 2.8rem; font-weight: 900; color: #fff; line-height: 1.1; margin-bottom: 2.5rem; }
+
+    /* project grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.4rem;
+      max-width: 900px;
+    }
+
+    .project-card {
+      background: #181818;
+      border: 1px solid #252525;
+      border-radius: 12px;
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .project-card:hover {
+      border-color: #3a3a3a;
+      transform: translateY(-3px);
+    }
+
+    .project-title {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .project-desc {
+      color: #888;
+      font-size: 0.85rem;
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      background: #1e1e1e;
+      border: 1px solid #2e2e2e;
+      color: #aaa;
+      font-size: 0.72rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 20px;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 0.4rem;
+    }
+
+    .project-links a {
+      font-size: 0.8rem;
+      color: #666;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .project-links a:hover { color: #ddd; }
+
+    /* loading / error states */
+    .state-msg {
+      color: #555;
+      font-size: 0.9rem;
+      padding: 2rem 0;
+    }
+  </style>
+</head>
+<body>
+<div class="page-layout">
+
+  <aside class="sidebar">
+    <div>
+      <p class="sidebar-name">Joel<br>Dsilva</p>
+      <p class="sidebar-role">Front-end Dev / UI Designer</p>
+    </div>
+    <nav class="sidebar-nav">
+        <a href="/">Home</a>
+        <a href="/about">About me</a>
+        <a href="/skills">Skills</a>
+        <a href="/contact">Contact</a>
+        <a href="/projects">Project</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <p class="page-label fade-in">What I've built</p>
+    <h1 class="page-title fade-in delay-1">Projects.</h1>
+
+    <div class="projects-grid" id="projects-grid">
+      <p class="state-msg" id="projects-status">Loading projects…</p>
+    </div>
+  </main>
+
+</div>
+
+<script src="/static/main.js"></script>
+<script>
+  // Fetch projects from the Flask API and render them
+  async function loadProjects() {
+    const grid   = document.getElementById('projects-grid');
+    const status = document.getElementById('projects-status');
+
+    try {
+      const res  = await fetch('/api/projects');
+      const data = await res.json();
+
+      if (!data.length) {
+        status.textContent = 'No projects yet — check back soon!';
+        return;
+      }
+
+      // Remove the loading message
+      status.remove();
+
+      data.forEach((project, i) => {
+        const card = document.createElement('div');
+        card.className = `project-card fade-in delay-${Math.min(i + 1, 4)}`;
+
+        // Build tech tag pills
+        const tagsHTML = project.tech
+          .map(t => `<span class="tag">${t.trim()}</span>`)
+          .join('');
+
+        // Build links (only show if URL exists)
+        const githubLink = project.github_url
+          ? `<a href="${project.github_url}" target="_blank">GitHub →</a>` : '';
+        const liveLink = project.live_url
+          ? `<a href="${project.live_url}" target="_blank">Live →</a>` : '';
+
+        card.innerHTML = `
+          <p class="project-title">${project.title}</p>
+          <p class="project-desc">${project.description}</p>
+          <div class="project-tags">${tagsHTML}</div>
+          <div class="project-links">${githubLink}${liveLink}</div>
+        `;
+
+        grid.appendChild(card);
+      });
+
+      // Re-run scroll reveal so new cards animate
+      initScrollReveal();
+
+    } catch (err) {
+      status.textContent = 'Could not load projects. Make sure Flask is running.';
+      console.error(err);
+    }
+  }
+
+  loadProjects();
+</script>
+</body>
+</html>
