@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact — Joel Dsilva</title>
-  <link rel="stylesheet" href="/styles/style.css">
-  <link rel="stylesheet" href="/styles/effects.css">
+  <link rel="stylesheet" href="/static/style.css">
   <style>
     body { overflow-y: auto; }
 
@@ -230,10 +229,11 @@
         <p class="sidebar-role">Front-end Dev / UI Designer</p>
       </div>
       <nav class="sidebar-nav">
-        <a href="/templates/index.html">Home</a>
-        <a href="/templates/about.html">About me</a>
-        <a href="/templates/skills.html">Skills</a>
-        <a href="/templates/contact.html" class="active">Contact</a>
+        <a href="/">Home</a>
+        <a href="/about">About me</a>
+        <a href="/skills">Skills</a>
+        <a href="/contact" class="active">Contact</a>
+        <a href="/projects">Project</a>
       </nav>
     </aside>
 
@@ -293,31 +293,7 @@
 
     </main>
   </div>
-
-  <script src="/scripts/main.js"></script>
-  <script>
-    // Basic client-side form feedback
-    // Later: swap this for a real fetch() to your Express backend
-    document.getElementById('submit-btn').addEventListener('click', () => {
-      const name    = document.getElementById('contact-name').value.trim();
-      const email   = document.getElementById('contact-email').value.trim();
-      const message = document.getElementById('contact-message').value.trim();
-      const note    = document.getElementById('form-note');
-
-      if (!name || !email || !message) {
-        note.textContent = 'Please fill in all fields.';
-        note.style.color = '#c0392b';
-        return;
-      }
-
-      // TODO: replace this with fetch('/api/contact', { method: 'POST', body: ... })
-      note.textContent = `Thanks ${name}! Message received. (Hook this up to your backend next.)`;
-      note.style.color = '#888';
-
-      document.getElementById('contact-name').value    = '';
-      document.getElementById('contact-email').value   = '';
-      document.getElementById('contact-message').value = '';
-    });
-  </script>
+  <script src="/static/main.js"></script>
+  <script src="/static/contact.js"></script>
 </body>
 </html>
