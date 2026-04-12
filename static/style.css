@@ -186,3 +186,57 @@ nav, .container {
     transform: translateY(0);
   }
 }
+
+@media (max-width: 768px) {
+  body { overflow-y: auto; }
+
+  nav, .container {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  /* LEFT panel takes full width */
+  .left {
+    width: 100%;
+    clip-path: none;
+    padding: 3rem 2rem 2rem;
+    z-index: 1;
+  }
+
+  .left h1 {
+    font-size: 2.2rem;
+  }
+
+  /* RIGHT panel stacks below */
+  .right {
+    width: 100%;
+    margin-left: 0;
+    padding: 1.5rem 2rem;
+    flex-direction: column-reverse;
+  }
+
+  /* Nav links wrap properly */
+  .nav-links {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .nav-links a {
+    color: #ccc;
+  }
+
+  /* Fix social icon circles */
+  .social-links a {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+  }
+
+  /* Photo smaller on mobile */
+  .hero-photo img {
+    max-height: 50vh;
+  }
+}
