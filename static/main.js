@@ -1,7 +1,7 @@
 /* main.js — shared across all pages */
 
 /* 1. TYPING ANIMATION */
-const roles = ["Front-end Developer", "UI Designer", "Creative Coder"];
+const roles = ["Python django developer", "fresher", "Coder"];
 const roleEl = document.querySelector(".role");
 
 if (roleEl) {
