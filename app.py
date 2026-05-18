@@ -50,8 +50,8 @@ def init_db():
                 'A full-stck ecommerce website build with django and sqlite contains features like cart checkout and payment',
                 'Python, django, Sqlite,HTML, CSS, JS',
                 'https://github.com/Joel0804/Ecommerce',
-  
-            )
+                ''
+            ),
             (
                 'Weather Dashboard',
                 'Fetches live weather data from an open API and displays it in a clean, responsive UI.',
